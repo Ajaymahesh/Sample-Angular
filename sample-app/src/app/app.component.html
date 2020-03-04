@@ -1,0 +1,16 @@
+<div *ngFor="let row of datasource">
+  <h1 style="text-align: center;">{{ row.type }} </h1>
+  <div *ngFor="let obj of row.section">
+      <h1>{{ obj.title | uppercase }}</h1>
+      <div *ngFor="let content of obj.rjf">
+          <h3 *ngIf="content.type == 'Heading'">
+              <a [target]="content.inlineStyleRange.data.target" [href]="content.inlineStyleRange.data.url" *ngIf="content.inlineStyleRange.type === 'link'">{{content.text}} </a>
+              <span *ngIf="content.inlineStyleRange.type != 'link'"> {{content.text}} </span>
+          </h3>
+          <p *ngIf="content.type == 'Paragraph'">
+              <a [target]="content.inlineStyleRange.data.target" [href]="content.inlineStyleRange.data.url" *ngIf="content.inlineStyleRange.type === 'link'">{{content.inlineStyleRange.data.url}}</a>
+              <span *ngIf="content.inlineStyleRange.type != 'link'"> {{content.text}} </span>
+          </p>
+      </div>
+  </div>
+</div>
